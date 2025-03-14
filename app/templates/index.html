@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Database - Login/Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .logo-section {
+            flex: 1;
+            background: linear-gradient(45deg, #1a202c, #2d3748);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movify-logo {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .movify-logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #667eea;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            animation: rotate 10s linear infinite;
+        }
+
+        .movify-logo::after {
+            content: 'M';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .logo-subtext {
+            color: #a0aec0;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            flex: 1.2;
+            background: white;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #1a202c;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: #4a5568;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input::placeholder {
+            color: #a0aec0;
+        }
+
+        button {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        p {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.875rem;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            height: 10px;
+        }
+
+        a:hover {
+            color: #5a67d8;
+        }
+
+        .flash-messages {
+            margin-bottom: 1rem;
+        }
+
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .alert-success {
+            background-color: #c6f6d5;
+            color: #2f855a;
+        }
+
+        .alert-error {
+            background-color: #fed7d7;
+            color: #c53030;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                max-width: 420px;
+            }
+
+            .logo-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .movify-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+            }
+            
+            input {
+                font-size: 0.875rem;
+            }
+            
+            button {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="logo-section">
+            <div class="movify-logo"></div>
+            <div class="logo-text">Movify</div>
+            <div class="logo-subtext">Your Ultimate Movie Database</div>
+            <a href="{{url_for('api.database')}}">database</a>
+        </div>
+        <div class="container">
+            <div id="flash-message" class="flash-message">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </div>
+             <div class="form-container">
+                <form id="login-form" class="form active" action="/login" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <div class="flash-messages" id="flash-messages"></div>
+                    <h2>Login</h2>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                    <p>Don't have an account? <a href="#" id="switch-to-register">Register here</a></p>
+                </form>
+                <form id="register-form" class="form" action="/register" method="POST" onsubmit="return validatePassword(this)">
+                    <h2>Register</h2>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <div class="flash-messages" id="flash-messages-register"></div>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Register</button>
+                    <p>Already have an account? <a href="#" id="switch-to-login">Login here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+         function validatePassword(form) {
+            const password = form.password.value;
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false; 
+            }
+            return true; 
+        }
+        
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            loginForm.classList.toggle('active');
+            registerForm.classList.toggle('active');
+        }
+        
+        document.getElementById('switch-to-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleForm();
+        });
+
+        document.getElementById('switch-to-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleForm();
+        });
+
+        function hideFlashMessages() {
+            const flashMessages = document.querySelectorAll('.flash-message .alert');
+            flashMessages.forEach((message) => {
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.remove();
+                        message.style.display = 'none';
+                    }, 500); // Wait for fade-out transition
+                }, 3000); // Wait for 3 seconds before starting to fade out
+            });
+        }
+
+        // Call the function to hide flash messages
+        hideFlashMessages();
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+/* Import Google Fonts for a more elegant look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif; /* Change to a more elegant font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fce4ec; /* Light pink background */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: column; /* Change to column for menu bar */
+    max-width: 1200px; /* Set a max width for the container */
+    width: 100%; /* Allow the container to take full width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding to the container */
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d5006d; /* Violet background */
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-bar h2 {
+    margin: 0;
+    color: #ffffff; /* White color */
+    font-family: 'Montserrat', sans-serif; /* Use a more eye-catching font */
+}
+
+.menu-bar ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.menu-bar ul li {
+    margin: 0 15px;
+}
+
+.menu-bar ul li a {
+    text-decoration: none;
+    color: #ffffff; /* White color */
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-bar ul li a:hover {
+    background-color: #ff80ab; /* Lighter pink on hover */
+    color: #ffffff; /* White color */
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8bbd0; /* Light pink content area */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section {
+    background-image: url('home.jpeg'); /* Add your background image path */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    color: #ffffff; /* White text color for better contrast */
+    text-align: center; /* Center align text */
+    padding: 40px 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the welcome section */
+    font-family: 'Montserrat', sans-serif; /* Use a more eye-catching font */
+    font-size: 1.5em; /* Set a reasonable font size for welcome text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
+}
+
+.search-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add margin for spacing */
+    width: 100%; /* Make the search panel full width */
+    padding: 10px; /* Add padding for spacing */
+}
+
+#search-bar {
+    border: 1px solid #9b88df;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px; /* Slightly smaller padding for height */
+    flex: 1; /* Allow the search bar to grow */
+    max-width: 300px; /* Optional: Set a max width */
+    margin-right: 10px;
+    font-size: 1em; /* Normal font size */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px; /* Rectangular shape with slightly curved corners */
+    background-color: #ff4081; /* Pink button */
+    color: #ffffff; /* White text */
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s; /* Add transform transition for hover effect */
+    font-size: 1.2em; /* Set a reasonable font size for button text */
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+button:hover {
+    background-color: #ff80ab; /* Lighter pink on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+}
+
+.movie-item {
+    flex: 1 1 150px; /* Allow items to grow and shrink, with a base width of 150px */
+    text-align: center;
+    transition: transform 0.3s;
+    background-color: #d5006d; /* Violet movie item background */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.movie-item:hover {
+    transform: scale(1.05);
+}
+
+.movie-item img {
+    width: 200px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    object-fit: cover;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #d5006d; /* Violet footer */
+    color: #ffffff; /* White text */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212; /* Deep black background */
+    color: #ffffff; /* White text color */
+}
+
+.dark-mode .menu-bar {
+    background-color: #1e1e1e; /* Dark grey menu bar */
+}
+
+.dark-mode .menu-bar ul li a {
+    color: #ffffff; /* White text for menu items */
+}
+
+.dark-mode .content {
+    background-color: #2a2a2a; /* Dark grey content area */
+}
+
+.dark-mode .movie-item {
+    background-color: #333333; /* Dark movie item background */
+}
+
+.dark-mode footer {
+    background-color: #1e1e1e; /* Dark grey footer */
+}
+
+.dark-mode .welcome-section {
+    background-image: url('home.jpeg'); /* Dark mode background image */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    color: #ffffff; /* White text color for contrast */
+    font-family: 'Montserrat', sans-serif; /* Use a more eye-catching font */
+    font-size: 1.5em; /* Set a reasonable font size for welcome text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
+}
+
+.dark-mode button {
+    background-color: #555555; /* Grey button background */
+    color: #ffffff; /* White text color */
+    border-radius: 5px; /* Rectangular shape with slightly curved corners */
+}
+
+.dark-mode button:hover {
+    background-color: #000000; /* Black on hover */
+}
+
+/* Adjusting the search bar */
+#search-bar {
+    border: 1px solid #9b88df;
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px; /* Slightly smaller padding for height */
+    flex: 1; /* Allow the search bar to grow */
+    height: 30px; /* Set a smaller height */
+    margin-right: 10px;
+    font-size: 1em; /* Normal font size */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    #search-bar {
+        width: 100%; /* Make search bar full width */
+        margin-right: 0; /* Remove right margin */
+    }
+
+    .movie-item {
+        flex: 1 1 100%; /* Make movie items full width on small screens */
+    }
+}
+
+.search-results-heading {
+    text-align: center;
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+/* Hide the genre dropdown by default */
+#genre-dropdown {
+    display: none;
+    margin-top: 20px;
+}
